@@ -1,6 +1,6 @@
 var ObjectID = require('mongodb').ObjectID;
 
-module.exports = function(app, db) {
+module.exports = (app, db) => {
     app.get('/settings', (req, res) => {
         db.collection('settings').find().toArray((err, items) => {
             if (err) {
