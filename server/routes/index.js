@@ -1,5 +1,10 @@
-const noteRoutes = require('./note_routes');
+const noteRoutesEmployees = require('./note_routes_employees');
+const noteRoutesSettings = require('./note_routes_settings');
 
-module.exports = function(app, db) {
-	noteRoutes(app, db);
+module.exports = (app, db) => {
+    noteRoutesSettings(app, db);
+};
+
+module.exports = (app, db) => {
+    noteRoutesEmployees(app, db);
 };
