@@ -1,7 +1,7 @@
-console.log('* [example 1.1] sending test email');
 const config = require('./config_mail');
 
 module.exports = (recipient, countDays, name, isBirthday) => {
+    console.log('sending email ' + recipient + " " + countDays + " " + name);
     let day = config.days;
     var send = require('gmail-send')({
         user: config.user,

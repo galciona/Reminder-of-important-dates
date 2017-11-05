@@ -15,6 +15,7 @@ module.exports.get = (db, id, f) => {
 };
 
 module.exports.post = (db, param, f) => {
+    let now = new Date();
     const note = { 
         name: param.name,
         surname: param.url,
@@ -23,7 +24,7 @@ module.exports.post = (db, param, f) => {
         email: param.remove,
         birthday: param.remove,
         photo: param.remove,
-        created: new Date()
+        created: new Date(now.getFullYear(), now.getMonth(), now.getDate()).valueOf()
     };
     db.collection('employees').insert(note, (err, result) => {
         processingResult(err, result.ops[0], f);    
