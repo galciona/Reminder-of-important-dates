@@ -1,27 +1,38 @@
 const express = require('express');
 const MongoClient = require('mongodb').MongoClient;
 const bodyParser = require('body-parser');
-const db = require('./config_db');
 const app = express();
 const port = 8000;
 
+const db = require('./configs_db/config');
+const actionsDB = require('./configs_db/actions');
+const routes = require('./routes');
+const constants = require('./constants');
+
 app.use(bodyParser.urlencoded({ extended: true }));
 
-MongoClient.connect(db.url, (err, database) => {
-	if (err) {
-		return console.log(err);
-	}
-
-	require('./routes')(app, database);
-	app.listen(port, () => {
-	    console.log('MongoClient We are live on ' + port);
-	});
-});
-
 app.use((req, res, next) => {
-	console.log('%s %s', req.method, req.url);
-	next();
+    console.log('%s %s', req.method, req.url);
+    next();
 });
+
+var timerConnectDb = setInterval(() => {
+    MongoClient.connect(db.url, (err, database) => {
+        if (err) {
+            return console.log('Please, wait. We try conect to BD');
+        } else {
+            clearInterval(timerConnectDb);
+            const databas = database;
+            routes(app, database);
+            app.listen(port, () => {
+                console.log('MongoClient We are live on ' + port);
+            });
+            var timerId = setInterval(() => {
+                actionsDB.checkAndSendMail(app, database);
+            }, constants.TIME_CHECK_FOR_SEND_MESSAGE);
+        }
+    });
+}, constants.TIME_CONNECT_AFTER_ERROR);
 
 app.get('/', (req, res) => {
 	res.send('Hello!');
