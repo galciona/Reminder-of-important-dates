@@ -12,8 +12,10 @@ const constants = require('./constants');
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use((req, res, next) => {
-    console.log('%s %s', req.method, req.url);
-    next();
+    if (req.hostname == 'localhost') {
+        console.log('%s %s', req.hostname, req.url);
+        next();
+    } else res.send('Sorry!');
 });
 
 var timerConnectDb = setInterval(() => {
