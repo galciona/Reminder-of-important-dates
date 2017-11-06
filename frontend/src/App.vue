@@ -1,46 +1,56 @@
 <template>
   <v-app>
-    <div>
-      <v-tabs dark v-model="active">
-        <v-tabs-bar class="cyan" >
-          <v-tabs-item
-                  v-for="tab in tabs"
-                  :key="tab"
-                  :href="'#' + tab"
-                  ripple
-          >
-            Item {{ tab.slice(-1) }}
-          </v-tabs-item>
+    <v-tabs dark fixed centered>
+      <v-toolbar color="cyan">
+        <v-tabs-bar class="cyan" slot="extension">
           <v-tabs-slider color="yellow"></v-tabs-slider>
-        </v-tabs-bar>
-        <v-tabs-items>
-          <v-tabs-content
-                  v-for="tab in tabs"
-                  :key="tab"
-                  :id="tab"
+
+          <v-tabs-item @click = "clickTab(i)"
+                  v-for="i in tabs"
+                  :key="i"
+                  :href="'#tab-' + i"
           >
-            <v-card flat>
-              <v-card-text>{{ text }}</v-card-text>
-            </v-card>
-          </v-tabs-content>
-        </v-tabs-items>
-      </v-tabs>
-    </div>
+            {{ i }}
+          </v-tabs-item>
+        </v-tabs-bar>
+      </v-toolbar>
+      <v-tabs-items>
+        <v-tabs-content
+                v-for="i in tabs"
+                :key="i"
+                :id="'tab-' + i">
+          <v-card flat >
+
+            <v-card-text v-if="keyTab == tabs[0]"
+            ><items-component
+              ></items-component>
+            </v-card-text>
+
+            <v-card-text v-else
+            >Settings</v-card-text>
+
+          </v-card>
+        </v-tabs-content>
+      </v-tabs-items>
+    </v-tabs>
   </v-app>
 </template>
 
 <script>
+    import {
+        texts
+    } from './texts.js'
     export default {
-        data () {
+        data() {
             return {
-                tabs: ['tab-1', 'tab-2'],
-                active: null,
-                text: 'test'
+                keyTab: texts.employees,
+                tabs: [texts.employees, texts.settings],
+                text: ['Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', 'jjjj']
             }
         },
         methods: {
-            next () {
-                this.active = this.tabs[(this.tabs.indexOf(this.active) + 1) % this.tabs.length]
+            clickTab: function (key) {
+                this.keyTab = key;
             }
         }
     }
