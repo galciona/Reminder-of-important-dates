@@ -6,22 +6,23 @@
     >
         <template slot="headerCell" scope="props">
             <v-tooltip bottom>
-        <span slot="activator">
-          {{ props.header.text }}
-        </span>
-                <span>
-          {{ props.header.text }}
-        </span>
+                <span slot="activator">
+                  {{ props.header.text }}
+                </span>
+                        <span>
+                  {{ props.header.text }}
+                </span>
             </v-tooltip>
         </template>
-        <template slot="items" scope="props">
+
+        <template slot="items" scope="props" >
             <td class="text-xs-left">
                 <v-avatar
                         :tile="tile"
                         :size="16"
                         class="grey lighten-4"
                 >
-                    <img v-bind:src = props.item.photo alt="avatar">
+                    <img v-bind:src = props.item.photo alt="photo">
                 </v-avatar>
 
             </td>
@@ -33,6 +34,12 @@
             <td class="text-xs-left">{{ props.item.birthday }}</td>
             <td class="text-xs-left">{{ props.item.created }}</td>
 
+            <dialog_item-component
+                    :texts = texts
+                    :name_btn = texts.edit
+                    :title = texts.edit_item
+                    :item = props.item
+            ></dialog_item-component>
         </template>
     </v-data-table>
 </template>
@@ -41,8 +48,10 @@
     import {texts} from "../texts";
 
     export default {
+        props: ['texts'],
         data () {
             return {
+                dialog: false,
                 headers: [
                     {
                         text: texts.photo,
