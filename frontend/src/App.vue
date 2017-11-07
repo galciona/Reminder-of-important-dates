@@ -22,8 +22,18 @@
           <v-card flat >
 
             <v-card-text v-if="keyTab == tabs[0]"
-            ><items-component
+            >
+              <items-component
+                    :texts = texts
               ></items-component>
+              <v-card-text>
+                <dialog_item-component
+                        :texts = texts
+                        :name_btn = texts.create
+                        :title = texts.create_new
+                        :item = item
+                ></dialog_item-component>
+              </v-card-text>
             </v-card-text>
 
             <v-card-text v-else
@@ -43,9 +53,19 @@
     export default {
         data() {
             return {
+                item: {
+                    name:"",
+                    surname:"",
+                    position:"",
+                    phone:"",
+                    mail:"",
+                    birthday: "",
+                    photo: ""
+                },
+                dialog: false,
+                texts:texts,
                 keyTab: texts.employees,
-                tabs: [texts.employees, texts.settings],
-                text: ['Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', 'jjjj']
+                tabs: [texts.employees, texts.settings]
             }
         },
         methods: {

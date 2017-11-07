@@ -10,4 +10,9 @@ export const texts = {
     created: "CREATED",
     employees: "Employee",
     settings: "Settings",
+    update: "update",
+    edit: "edit",
+    create: "create",
+    edit_item: "Edit employee",
+    create_new: "Create new Employee"
 }
