@@ -17,11 +17,7 @@
 
         <template slot="items" scope="props" >
             <td class="text-xs-left">
-                <v-avatar
-                        :tile="tile"
-                        :size="16"
-                        class="grey lighten-4"
-                >
+                <v-avatar size= "16" class="grey lighten-4">
                     <img v-bind:src = props.item.photo alt="photo">
                 </v-avatar>
 
