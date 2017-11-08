@@ -44,7 +44,7 @@ module.exports.put = (db, id, param, f) => {
         created: param.created
     };
     db.collection('employees').update(details, note, (err, result) => {
-        processingResult(err, result.ops[0], f);
+        processingResult(err, result.ops, f);
     });
 }
 
