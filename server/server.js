@@ -15,7 +15,7 @@ setupCORS = (req, res, next) => {
     res.setHeader('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With, Content-type,Accept,X-Access-Token,X-Key');
     res.setHeader('Access-Control-Allow-Origin', '*');
-    console.log('%s %s ', req.hostname);
+    console.log('%s %s ', req.hostname, req.url);
     if (req.method === 'OPTIONS') {
         res.status(200).end();
     } else {

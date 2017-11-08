@@ -18,12 +18,12 @@ module.exports.post = (db, param, f) => {
     let now = new Date();
     const note = { 
         name: param.name,
-        surname: param.url,
-        position: param.controls,
-        phone: param.apply,
-        email: param.remove,
-        birthday: param.remove,
-        photo: param.remove,
+        surname: param.surname,
+        position: param.position,
+        phone: param.phone,
+        email: param.email,
+        birthday: param.birthday,
+        photo: param.photo,
         created: new Date(now.getFullYear(), now.getMonth(), now.getDate()).valueOf()
     };
     db.collection('employees').insert(note, (err, result) => {
@@ -35,12 +35,12 @@ module.exports.put = (db, id, param, f) => {
     const details = { '_id': new ObjectID(id) };
     const note = {
         name: param.name,
-        surname: param.url,
-        position: param.controls,
-        phone: param.apply,
-        email: param.remove,
-        birthday: param.remove,
-        photo: param.remove,
+        surname: param.surname,
+        position: param.position,
+        phone: param.phone,
+        email: param.email,
+        birthday: param.birthday,
+        photo: param.photo,
         created: param.created
     };
     db.collection('employees').update(details, note, (err, result) => {
