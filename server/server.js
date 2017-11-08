@@ -11,11 +11,22 @@ const constants = require('./constants');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
+setupCORS = (req, res, next) => {
+    res.setHeader('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With, Content-type,Accept,X-Access-Token,X-Key');
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    console.log('%s %s ', req.hostname);
+    if (req.method === 'OPTIONS') {
+        res.status(200).end();
+    } else {
+        if (req.hostname == 'localhost') {
+            console.log('%s %s', req.hostname, req.url);
+            next();
+        } else res.send('Sorry!');
+    }
+}
 app.use((req, res, next) => {
-    if (req.hostname == 'localhost') {
-        console.log('%s %s', req.hostname, req.url);
-        next();
-    } else res.send('Sorry!');
+    setupCORS(req, res, next)
 });
 
 var timerConnectDb = setInterval(() => {
@@ -35,7 +46,3 @@ var timerConnectDb = setInterval(() => {
         }
     });
 }, constants.TIME_CONNECT_AFTER_ERROR);
-
-app.get('/', (req, res) => {
-	res.send('Hello!');
-});
