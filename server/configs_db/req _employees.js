@@ -24,7 +24,7 @@ module.exports.post = (db, param, f) => {
         email: param.email,
         birthday: param.birthday,
         photo: param.photo,
-        created: new Date(now.getFullYear(), now.getMonth(), now.getDate()).valueOf()
+        created: now.getFullYear() + "-" + now.getMonth() +"-" + now.getDate()
     };
     db.collection('employees').insert(note, (err, result) => {
         processingResult(err, result.ops[0], f);    
