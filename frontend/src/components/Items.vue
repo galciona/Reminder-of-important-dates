@@ -70,18 +70,42 @@
                     {
                         text: texts.surname,
                         align: 'left',
-                        value: 'surname'
+                        value: 'surname',
+                        sortable: false,
                     },
                     {
                         text: texts.name,
                         align: 'left',
-                        value: 'name'
+                        value: 'name',
+                        sortable: false,
                     },
-                    {text: texts.position, align: 'left', value: 'position'},
-                    {text: texts.phone, align: 'left', value: 'phone'},
-                    {text: texts.mail, align: 'left', value: 'mail'},
-                    {text: texts.birthday, align: 'left', value: 'birthday'},
-                    {text: texts.created, align: 'left', value: 'created'}
+                    {
+                        text: texts.position,
+                        align: 'left',
+                        value: 'position',
+                        sortable: false,
+                    },
+                    {
+                        text: texts.phone,
+                        align: 'left',
+                        value: 'phone'
+                    },
+                    {
+                        text: texts.mail,
+                        align: 'left',
+                        value: 'mail',
+                        sortable: false,
+                    },
+                    {
+                        text: texts.birthday,
+                        align: 'left',
+                        value: 'birthday'
+                    },
+                    {
+                        text: texts.created,
+                        align: 'left',
+                        value: 'created'
+                    }
                 ]
             }
         }
