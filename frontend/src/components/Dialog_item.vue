@@ -37,7 +37,7 @@
                         ></v-text-field>
                         <v-text-field
                                 label="E-mail"
-                                v-model=item.mail
+                                v-model=item.email
                                 required
                         ></v-text-field>
 
@@ -96,8 +96,6 @@
                     if (window.DEBUG) console.info("Reverse update");
                     this.$store.dispatch('loadEmployee', this.item._id);
                     if (window.DEBUG) console.log(this.item);
-                } else {
-                    this.clear();
                 }
             },
             clickSave() {
@@ -107,7 +105,7 @@
                     surname: this.item.surname,
                     position: this.item.position,
                     phone: this.item.phone,
-                    mail: this.item.mail,
+                    email: this.item.email,
                     birthday: this.item.birthday,
                     photo: this.item.photo,
                     created: this.item.created
@@ -121,15 +119,6 @@
                     this.$store.dispatch('postEmployee', [itemForSend]);
                     if (window.DEBUG) console.log(this.item);
                 }
-            },
-            clear() {
-                this.name = ''
-                this.surname = ''
-                this.position = ''
-                this.phone = ''
-                this.mail = ''
-                this.birthday = '2000-10-10'
-                this.photo = ''
             }
         }
     }

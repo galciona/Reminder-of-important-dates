@@ -24,7 +24,7 @@
             <td class="text-xs-left">{{ props.item.surname }}</td>
             <td class="text-xs-left">{{ props.item.position }}</td>
             <td class="text-xs-left">{{ props.item.phone }}</td>
-            <td class="text-xs-left">{{ props.item.mail }}</td>
+            <td class="text-xs-left">{{ props.item.email }}</td>
             <td class="text-xs-left">{{ props.item.birthday }}</td>
             <td class="text-xs-left">{{ props.item.created }}</td>
 
