@@ -58,7 +58,7 @@
                     position: "",
                     phone: "",
                     mail: "",
-                    birthday: "",
+                    birthday: "2000-10-10",
                     photo: ""
                 },
                 dialog: false,

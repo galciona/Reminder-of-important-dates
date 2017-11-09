@@ -10,11 +10,11 @@
                     <v-toolbar-title>{{title}}</v-toolbar-title>
                     <v-spacer></v-spacer>
                     <v-toolbar-items>
-                        <v-btn dark flat @click="clickSave">{{btn_save}}</v-btn>
+                        <v-btn dark flat @click.native="dialog = false" @click="clickSave">{{btn_save}}</v-btn>
                     </v-toolbar-items>
                 </v-toolbar>
                 <v-card>
-                    <form class = "edit-cart">
+                    <form class="edit-cart">
                         <v-text-field
                                 label="Surname"
                                 v-model=item.surname
@@ -92,13 +92,15 @@
         },
         methods: {
             clickClose() {
-                if (window.DEBUG) console.info("Reverse update");
-                this.$store.dispatch('loadEmployee', this.item._id);
-                if (window.DEBUG) console.log(this.item);
-
+                if (this.item._id) {
+                    if (window.DEBUG) console.info("Reverse update");
+                    this.$store.dispatch('loadEmployee', this.item._id);
+                    if (window.DEBUG) console.log(this.item);
+                } else {
+                    this.clear();
+                }
             },
             clickSave() {
-                if (window.DEBUG) console.info(this.item);
                 let itemForSend = {
                     _id: this.item._id,
                     name: this.item.name,
@@ -110,10 +112,15 @@
                     photo: this.item.photo,
                     created: this.item.created
                 };
-                this.$store.dispatch('putEmployee', [itemForSend]);
-                //this.$store.dispatch('putEmployee',itemForSend);
-                if (window.DEBUG) console.log(this.item);
-                this.dialog = false;
+                if (this.item._id) {
+                    if (window.DEBUG) console.info("Saving item");
+                    this.$store.dispatch('putEmployee', [itemForSend]);
+                    if (window.DEBUG) console.log(this.item);
+                }else{
+                    if (window.DEBUG) console.info("Adding item");
+                    this.$store.dispatch('postEmployee', [itemForSend]);
+                    if (window.DEBUG) console.log(this.item);
+                }
             },
             clear() {
                 this.name = ''
