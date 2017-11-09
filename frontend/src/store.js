@@ -9,13 +9,16 @@ const state = {
     employees: [],
     settings: {}
 }
-console.log(window.DEBUG);
 const mutations = {
     SET_SETTINGS(state, data) {
         state.settings = data
+        console.info("SET_SETTINGS");
+        console.info(state.settings.data);
     },
     SET_EMPLOYEES(state, data) {
         state.employees = data;
+        console.info("SET_EMPLOYEES");
+        console.info(state.employees.data);
     },
     SET_EMPLOYEE(state, emploee) {
         state.employees.data.forEach((item, i, arr) => {
@@ -26,12 +29,16 @@ const mutations = {
                 item.email = emploee.data.mail;
                 item.phone = emploee.data.phone;
                 item.birthday = emploee.data.birthday;
+                console.info("SET_EMPLOYEE");
+                console.info(item);
             }
         });
     },
     ADD_EMPLOYEE(state, emploee) {
         if (state.employees.data) {
             state.employees.data.push(emploee.data)
+            console.info("ADD_EMPLOYEE");
+            console.info(emploee);
         }
     },
     DELETE_EMPLOYEE(state, id) {
@@ -39,6 +46,8 @@ const mutations = {
         state.employees.data.forEach((item, i, arr) => {
             if (item._id === id.id) {
                 delete state.employees.data[i];
+                console.info("DELETE_EMPLOYEE");
+                console.info(item);
             } else {
                 data.push(item)
             }
@@ -60,7 +69,7 @@ const actions = {
                 commit('SET_EMPLOYEES', {data})
             })
             .catch(error => {
-                console.log("ERR => GET_EMPLOYEES " + error)
+                if (window.DEBAG) console.error("ERR => GET_EMPLOYEES " + error)
             });
     },
 
@@ -76,7 +85,7 @@ const actions = {
                 commit('SET_EMPLOYEE', {data})
             })
             .catch(error => {
-                console.log("ERR => GET_EMPLOYEE " + error)
+                if (window.DEBAG) console.error("ERR => GET_EMPLOYEE " + error)
             });
     },
 
@@ -92,7 +101,7 @@ const actions = {
                 commit('SET_SETTINGS', {data})
             })
             .catch(error => {
-                console.log("ERR => GET_SETTINGS " + error)
+                if (window.DEBAG) console.error("ERR => GET_SETTINGS " + error)
             });
     },
 
@@ -110,7 +119,7 @@ const actions = {
                 commit('ADD_EMPLOYEE', {data})
             },
             failure: (error) => {
-                console.log("ERR => POST_EMPLOYEE " + error)
+                if (window.DEBAG) console.error("ERR => POST_EMPLOYEE " + error)
             },
         });
     },
@@ -127,7 +136,7 @@ const actions = {
                 commit('SET_EMPLOYEE', {data})
             },
             failure: (error) => {
-                console.log("ERR => PUT_EMPLOYEE " + error)
+                if (window.DEBAG) console.error("ERR => PUT_EMPLOYEE " + error)
             },
         });
     },
@@ -146,7 +155,7 @@ const actions = {
                 }
             })
             .catch(error => {
-                console.log("ERR => DELETE_EMPLOYEE " + error)
+                if (window.DEBAG) console.error("ERR => DELETE_EMPLOYEE " + error)
             });
     },
 
@@ -162,10 +171,10 @@ const actions = {
                 commit('SET_SETTINGS', {data})
             },
             failure: (error) => {
-                console.log("ERR => SET_SETTINGS " + error)
+                if (window.DEBAG) console.error("ERR => SET_SETTINGS " + error)
             },
         });
-    },
+    }
 }
 
 const getters = {}
