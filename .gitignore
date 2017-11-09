@@ -1,2 +1,6 @@
 server/node_modules/
-
+frontend/node_modules/
+.idea/
+frontend/public/user64.png
+frontend/public/user.png
+frontend/package-lock.json
