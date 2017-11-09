@@ -2,8 +2,7 @@
     <v-data-table
             v-bind:headers="headers"
             :items="this.items"
-            class="elevation-1"
-    >
+            class="elevation-1">
         <template slot="headerCell" scope="props">
             <v-tooltip bottom>
                 <span slot="activator">
@@ -33,10 +32,11 @@
                     :btn_edit=btn_edit
                     :btn_save=btn_save
                     :title=title_dialog
-                    :item = props.item
+                    :item=props.item
             ></dialog_item-component>
             <btn_delete-component
                     :item=props.item
+                    :btn_delete=btn_delete
             ></btn_delete-component>
 
         </template>

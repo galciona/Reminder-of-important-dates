@@ -12,9 +12,9 @@ export const texts = {
     settings: "Settings",
     update: "update",
     edit: "edit",
-    create: "create",
+    btn_create: "create",
     title_edit_item: "Edit employee",
-    btn_create_new: "Create new Employee",
+    title_create_new: "Create new Employee",
     btn_delete: "DELETE",
     btn_edit: "EDIT",
     btn_save: "SAVE"
