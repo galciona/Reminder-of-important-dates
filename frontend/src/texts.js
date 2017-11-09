@@ -1,0 +1,21 @@
+export const texts = {
+    nameApp: "Reminder",
+    photo: "PHOTO",
+    surname: "SURNANE",
+    name: "NAME",
+    position: "POSITION",
+    phone: "PHONE",
+    mail: "EMAIL",
+    birthday: "BIRTHDAY",
+    created: "CREATED",
+    employees: "Employee",
+    settings: "Settings",
+    update: "update",
+    edit: "edit",
+    btn_create: "create",
+    title_edit_item: "Edit employee",
+    title_create_new: "Create new Employee",
+    btn_delete: "DELETE",
+    btn_edit: "EDIT",
+    btn_save: "SAVE"
+}
