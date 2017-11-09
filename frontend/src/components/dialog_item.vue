@@ -18,34 +18,26 @@
                         <v-text-field
                                 label="Surname"
                                 v-model=item.surname
-                                :counter="20"
-
                                 required
                         ></v-text-field>
                         <v-text-field
                                 label="Name"
                                 v-model=item.name
-                                :counter="20"
-
                                 required
                         ></v-text-field>
                         <v-text-field
                                 label="Position"
                                 v-model=item.position
-                                :counter="20"
-
                                 required
                         ></v-text-field>
                         <v-text-field
                                 label="Phone"
                                 v-model=item.phone
-
                                 required
                         ></v-text-field>
                         <v-text-field
                                 label="E-mail"
                                 v-model=item.mail
-
                                 required
                         ></v-text-field>
 
