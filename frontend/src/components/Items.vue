@@ -24,7 +24,7 @@
             <td class="text-xs-left">{{ props.item.surname }}</td>
             <td class="text-xs-left">{{ props.item.position }}</td>
             <td class="text-xs-left">{{ props.item.phone }}</td>
-            <td class="text-xs-left">{{ props.item.mail }}</td>
+            <td class="text-xs-left">{{ props.item.email }}</td>
             <td class="text-xs-left">{{ props.item.birthday }}</td>
             <td class="text-xs-left">{{ props.item.created }}</td>
 
@@ -70,18 +70,42 @@
                     {
                         text: texts.surname,
                         align: 'left',
-                        value: 'surname'
+                        value: 'surname',
+                        sortable: false,
                     },
                     {
                         text: texts.name,
                         align: 'left',
-                        value: 'name'
+                        value: 'name',
+                        sortable: false,
                     },
-                    {text: texts.position, align: 'left', value: 'position'},
-                    {text: texts.phone, align: 'left', value: 'phone'},
-                    {text: texts.mail, align: 'left', value: 'mail'},
-                    {text: texts.birthday, align: 'left', value: 'birthday'},
-                    {text: texts.created, align: 'left', value: 'created'}
+                    {
+                        text: texts.position,
+                        align: 'left',
+                        value: 'position',
+                        sortable: false,
+                    },
+                    {
+                        text: texts.phone,
+                        align: 'left',
+                        value: 'phone'
+                    },
+                    {
+                        text: texts.mail,
+                        align: 'left',
+                        value: 'mail',
+                        sortable: false,
+                    },
+                    {
+                        text: texts.birthday,
+                        align: 'left',
+                        value: 'birthday'
+                    },
+                    {
+                        text: texts.created,
+                        align: 'left',
+                        value: 'created'
+                    }
                 ]
             }
         }

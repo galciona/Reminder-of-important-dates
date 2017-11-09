@@ -26,7 +26,7 @@ const mutations = {
                 item.surname = emploee.data.surname;
                 item.name = emploee.data.name;
                 item.position = emploee.data.position;
-                item.email = emploee.data.mail;
+                item.email = emploee.data.email;
                 item.phone = emploee.data.phone;
                 item.birthday = emploee.data.birthday;
                 console.info("SET_EMPLOYEE");

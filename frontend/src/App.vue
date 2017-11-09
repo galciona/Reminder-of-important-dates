@@ -27,7 +27,7 @@
                                         :btn_edit=texts.btn_create
                                         :btn_save=texts.btn_save
                                         :title=texts.title_create_new
-                                        :item=item
+                                        :item=getItemClean
                                 ></dialog_item-component>
                             </v-card-text>
                         </v-card-text>
@@ -55,7 +55,7 @@
                     surname: "",
                     position: "",
                     phone: "",
-                    mail: "",
+                    email: "",
                     birthday: "2000-10-10",
                     photo: ""
                 },
@@ -66,6 +66,16 @@
             }
         },
         computed: {
+            getItemClean(){
+                this.item.name = "";
+                this.item.surname = "";
+                this.item.position = "";
+                this.item.phone = "";
+                this.item.email = "";
+                this.item.birthday = "2000-10-10";
+                this.item.photo = "";
+              return this.item
+            },
             itemSettings() {
                 return this.$store.state.settings.data;
             },
