@@ -68,7 +68,7 @@
             }
         },
         methods: {
-            clickTab: (key) => {
+            clickTab(key) {
                 this.keyTab = key;
             }
         }

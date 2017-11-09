@@ -101,13 +101,13 @@
             }
         },
         methods: {
-            clickClose: () => {
+            clickClose() {
                 if (window.DEBUG) console.info("Reverse update");
                 this.$store.dispatch('loadEmployee', this.item._id);
                 if (window.DEBUG) console.log(this.item);
 
             },
-            clickSave: () => {
+            clickSave() {
                 if (window.DEBUG) console.info(this.item);
                 let itemForSend = {
                     _id: this.item._id,
@@ -125,7 +125,7 @@
                 if (window.DEBUG) console.log(this.item);
                 this.dialog = false;
             },
-            clear: () => {
+            clear() {
                 this.name = ''
                 this.surname = ''
                 this.position = ''
