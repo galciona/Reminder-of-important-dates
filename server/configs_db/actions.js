@@ -3,15 +3,17 @@ var reqSettings = require('./req _settings');
 const mailSend = require('../mail_send');
 
 const checkDate = (daysToDate, eventDate, ifDay) => {
-    let eventDateF = new Date(eventDate);
-    eventDateF.setDate(eventDateF.getDate() - daysToDate);
-    let nowDate = new Date();
-   
-    console.log("eventDate => day: " + eventDateF);
-    console.log("dayToDate => " + daysToDate);
 
-    if ((eventDateF.getMonth() === nowDate.getMonth())
-        && (eventDateF.getDate() === nowDate.getDate())) {
+    let eventDateM = eventDate.split('-');
+    let nowDatePlus = new Date(new Date().valueOf() + daysToDate*86400000)
+
+    console.log("nowDatePlus => " + nowDatePlus);
+    console.log("eventDate =>  " + eventDateM);
+    console.log("dayToDate => " + nowDatePlus.getDate());
+
+    if (((eventDateM[1]-1) == nowDatePlus.getMonth())
+        && (eventDateM[2] == nowDatePlus.getDate())) {
+        console.log("Sending!");
         ifDay();
     }
 }
