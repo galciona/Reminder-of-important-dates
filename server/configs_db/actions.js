@@ -2,14 +2,16 @@ var reqEmployees = require('./req _employees');
 var reqSettings = require('./req _settings');
 const mailSend = require('../mail_send');
 
-const checkDate = (dayToDate, date, ifDay) => {
-    let dateEvent = new Date(date);
-    let now = new Date();
+const checkDate = (daysToDate, eventDate, ifDay) => {
+    let eventDateF = new Date(eventDate);
+    eventDateF.setDate(eventDateF.getDate() - daysToDate);
+    let nowDate = new Date();
+   
+    console.log("eventDate => day: " + eventDateF);
+    console.log("dayToDate => " + daysToDate);
 
-    let afteDaytoDate = new Date(new Date(now.getFullYear(), now.getMonth(), now.getDate()).valueOf() + dayToDate);
-    console.log("month: "+ dateEvent.getMonth() + " " + afteDaytoDate.getMonth() + " " + "day:" + dateEvent.getDate() + " " + afteDaytoDate.getDate());
-    if ((dateEvent.getMonth() === afteDaytoDate.getMonth())
-        && (dateEvent.getDate() === afteDaytoDate.getDate())) {
+    if ((eventDateF.getMonth() === nowDate.getMonth())
+        && (eventDateF.getDate() === nowDate.getDate())) {
         ifDay();
     }
 }
