@@ -13,6 +13,9 @@ export const texts = {
     update: "update",
     edit: "edit",
     create: "create",
-    edit_item: "Edit employee",
-    create_new: "Create new Employee"
+    title_edit_item: "Edit employee",
+    btn_create_new: "Create new Employee",
+    btn_delete: "DELETE",
+    btn_edit: "EDIT",
+    btn_save: "SAVE"
 }
