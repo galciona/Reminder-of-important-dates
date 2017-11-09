@@ -19,6 +19,9 @@
                         :key="i"
                         :id="'tab-' + i">
                     <v-card flat>
+                        <div v-show="isProgress" class = "progress">
+                            <v-progress-circular indeterminate color="primary"></v-progress-circular>
+                        </div>
                         <v-card-text v-if="keyTab == tabs[0]">
                             <items-component
 
@@ -67,6 +70,12 @@
                 tabs: [texts.employees, texts.settings],
             }
         },
+        computed:{
+            isProgress(){
+                if (window.DEBAG) console.info(this.$store.state.progress);
+                return this.$store.state.progress;
+            }
+        },
         methods: {
             clickTab(key) {
                 this.keyTab = key;
@@ -74,3 +83,14 @@
         }
     }
 </script>
+<style scoped lang="less">
+    .progress {
+        position:absolute;
+        left:50%;
+        top:30%;
+        text-align: center;
+    }
+    .progress-circular {
+        margin: 1rem
+    }
+</style>

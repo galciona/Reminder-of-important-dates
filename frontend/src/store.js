@@ -7,16 +7,29 @@ Vue.use(Vuex)
 
 const state = {
     employees: [],
-    settings: {}
+    settings: {},
+    progress: false
 }
 const mutations = {
+    TURN_ON_PROGRESS(state) {
+        state.progress=true;
+        console.info("TURN_ON_PROGRESS");
+        console.info(state.progress);
+    },
+    TURN_OFF_PROGRESS(state) {
+       state.progress=false;
+        console.info("TURN_OFF_PROGRESS");
+        console.info(state.progress);
+    },
     SET_SETTINGS(state, data) {
-        state.settings = data
+        state.settings = data;
+        commit('TURN_OFF_PROGRESS');
         console.info("SET_SETTINGS");
         console.info(state.settings.data);
     },
     SET_EMPLOYEES(state, data) {
         state.employees = data;
+        commit('TURN_ON_PROGRESS');
         console.info("SET_EMPLOYEES");
         console.info(state.employees.data);
     },
@@ -33,6 +46,7 @@ const mutations = {
                 console.info(item);
             }
         });
+        commit('TURN_OFF_PROGRESS');
     },
     ADD_EMPLOYEE(state, emploee) {
         if (state.employees.data) {
@@ -40,6 +54,7 @@ const mutations = {
             console.info("ADD_EMPLOYEE");
             console.info(emploee);
         }
+        commit('TURN_OFF_PROGRESS');
     },
     DELETE_EMPLOYEE(state, id) {
         let data = [];
@@ -53,11 +68,13 @@ const mutations = {
             }
         });
         state.employees.data = data;
+        commit('TURN_OFF_PROGRESS');
     }
 }
 
 const actions = {
     loadEmployees: ({commit}) => {
+        commit('TURN_ON_PROGRESS');
         fetch(API.GET_EMPLOYEES, {
             method: 'GET',
             headers: {
@@ -67,13 +84,16 @@ const actions = {
             .then(response => response.json())
             .then(data => {
                 commit('SET_EMPLOYEES', {data})
+                commit('TURN_OFF_PROGRESS');
             })
             .catch(error => {
                 if (window.DEBAG) console.error("ERR => GET_EMPLOYEES " + error)
+                commit('TURN_OFF_PROGRESS');
             });
     },
 
     loadEmployee: ({commit}, id) => {
+        commit('TURN_ON_PROGRESS');
         fetch(API.GET_EMPLOYEE + id, {
             method: 'GET',
             headers: {
@@ -83,13 +103,16 @@ const actions = {
             .then(response => response.json())
             .then(data => {
                 commit('SET_EMPLOYEE', {data})
+                commit('TURN_OFF_PROGRESS');
             })
             .catch(error => {
                 if (window.DEBAG) console.error("ERR => GET_EMPLOYEE " + error)
+                commit('TURN_OFF_PROGRESS');
             });
     },
 
     loadSettings: ({commit}) => {
+        commit('TURN_ON_PROGRESS');
         fetch(API.GET_SETTINGS, {
             method: 'GET',
             headers: {
@@ -99,13 +122,16 @@ const actions = {
             .then(response => response.json())
             .then(data => {
                 commit('SET_SETTINGS', {data})
+                commit('TURN_OFF_PROGRESS');
             })
             .catch(error => {
                 if (window.DEBAG) console.error("ERR => GET_SETTINGS " + error)
+                commit('TURN_OFF_PROGRESS');
             });
     },
 
     postEmployee: ({commit}, item) => {
+        commit('TURN_ON_PROGRESS');
         $.ajax({
             type: "POST",
             url: API.POST_EMPLOYEE,
@@ -117,14 +143,17 @@ const actions = {
                 item[0]._id = data._id;
                 data = item[0];
                 commit('ADD_EMPLOYEE', {data})
+                commit('TURN_OFF_PROGRESS');
             },
             failure: (error) => {
                 if (window.DEBAG) console.error("ERR => POST_EMPLOYEE " + error)
+                commit('TURN_OFF_PROGRESS');
             },
         });
     },
 
     putEmployee: ({commit}, item) => {
+        commit('TURN_ON_PROGRESS');
         $.ajax({
             type: "PUT",
             url: API.PUT_EMPLOYEE + item[0]._id,
@@ -133,15 +162,18 @@ const actions = {
             dataType: "json",
             success: (data) => {
                 data = item[0];
-                commit('SET_EMPLOYEE', {data})
+                commit('SET_EMPLOYEE', {data});
+                commit('TURN_OFF_PROGRESS');
             },
             failure: (error) => {
                 if (window.DEBAG) console.error("ERR => PUT_EMPLOYEE " + error)
+                commit('TURN_OFF_PROGRESS');
             },
         });
     },
 
     deleteEmployee: ({commit}, id) => {
+        commit('TURN_ON_PROGRESS');
         fetch(API.DELETE_EMPLOYEE + id, {
             method: 'DELETE',
             headers: {
@@ -152,14 +184,17 @@ const actions = {
             .then(data => {
                 if (data) {
                     commit('DELETE_EMPLOYEE', {id})
+                    commit('TURN_OFF_PROGRESS');
                 }
             })
             .catch(error => {
                 if (window.DEBAG) console.error("ERR => DELETE_EMPLOYEE " + error)
+                commit('TURN_OFF_PROGRESS');
             });
     },
 
     putSettings: ({commit}, item) => {
+        commit('TURN_ON_PROGRESS');
         $.ajax({
             type: "PUT",
             url: API.PUT_SETTINGS + item[0]._id,
@@ -169,9 +204,12 @@ const actions = {
             success: (data) => {
                 data = item[0];
                 commit('SET_SETTINGS', {data})
+
+                commit('TURN_OFF_PROGRESS');
             },
             failure: (error) => {
                 if (window.DEBAG) console.error("ERR => SET_SETTINGS " + error)
+                commit('TURN_OFF_PROGRESS');
             },
         });
     }
