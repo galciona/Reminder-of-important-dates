@@ -21,7 +21,7 @@ Mongodb, Gmail-send
 
 For installation, see README in /server and /frontend
 
-## Versioning
+## Changelog
 
 ### 1.0.0 
 1. The application contains and allows you to edit (create / modify / delete) the following data:
