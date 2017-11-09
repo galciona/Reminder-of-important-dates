@@ -16,8 +16,8 @@
 
         <template slot="items" scope="props">
             <td class="text-xs-left">
-                <v-avatar size="16" class="grey lighten-4">
-                    <img v-bind:src=props.item.photo alt="photo">
+                <v-avatar class="grey lighten-4">
+                    <img v-bind:src=img alt="photo">
                 </v-avatar>
             </td>
             <td class="text-xs-left">{{ props.item.name }}</td>
@@ -54,6 +54,7 @@
         },
         data() {
             return {
+                img: 'public/user32.png',
                 btn_edit: texts.btn_edit,
                 title_dialog: texts.title_edit_item,
                 btn_save: texts.btn_save,
