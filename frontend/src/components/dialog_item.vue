@@ -13,8 +13,8 @@
                         <v-btn dark flat @click="clickSave">{{btn_save}}</v-btn>
                     </v-toolbar-items>
                 </v-toolbar>
-                <v-card class="edit-cart">
-                    <form>
+                <v-card>
+                    <form class = "edit-cart">
                         <v-text-field
                                 label="Surname"
                                 v-model=item.surname
@@ -86,8 +86,6 @@
     </v-layout>
 </template>
 <script>
-    import {validationMixin} from 'vuelidate'
-    import {required, maxLength, email} from 'vuelidate/lib/validators'
     import VDatePicker from "vuetify/es5/components/VDatePicker/VDatePicker";
     import VTextField from "vuetify/es5/components/VTextField/VTextField";
 
@@ -140,10 +138,9 @@
 
 <style scoped lang="less">
     .edit-cart {
-        margin-top: 20px;
+        margin-top: 10px;
         width: 800px;
-        left: 30px;
-        margin-right: 10px;
+        left: 40px;
         position: fixed;
     }
 </style>
