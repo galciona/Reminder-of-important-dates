@@ -21,7 +21,6 @@
                     <v-card flat>
                         <v-card-text v-if="keyTab == tabs[0]">
                             <items-component
-
                             ></items-component>
                             <v-card-text>
                                 <dialog_item-component
@@ -32,11 +31,10 @@
                                 ></dialog_item-component>
                             </v-card-text>
                         </v-card-text>
-
-                        <v-card-text v-else
-                        >Settings
-                        </v-card-text>
-
+                        <settings-component v-else
+                                :btn_save=texts.btn_save
+                                :item="itemSettings"
+                        ></settings-component>
                     </v-card>
                 </v-tabs-content>
             </v-tabs-items>
@@ -66,6 +64,11 @@
                 keyTab: texts.employees,
                 tabs: [texts.employees, texts.settings],
             }
+        },
+        computed: {
+            itemSettings() {
+                return this.$store.state.settings.data;
+            },
         },
         methods: {
             clickTab(key) {

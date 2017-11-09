@@ -7,7 +7,7 @@ Vue.use(Vuex)
 
 const state = {
     employees: [],
-    settings: {}
+    settings: []
 }
 const mutations = {
     SET_SETTINGS(state, data) {
