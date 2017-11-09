@@ -6,15 +6,15 @@ import $ from 'jquery';
 Vue.use(Vuex)
 
 const state = {
-    employees:[],
-    settings:{}
+    employees: [],
+    settings: {}
 }
-
+console.log(window.DEBUG);
 const mutations = {
-    SET_SETTINGS (state, data) {
+    SET_SETTINGS(state, data) {
         state.settings = data
     },
-    SET_EMPLOYEES (state, data) {
+    SET_EMPLOYEES(state, data) {
         state.employees = data;
     },
     SET_EMPLOYEE(state, emploee) {
@@ -30,14 +30,16 @@ const mutations = {
         });
     },
     ADD_EMPLOYEE(state, emploee) {
-        state.employees.data.push(emploee.data)
+        if (state.employees.data) {
+            state.employees.data.push(emploee.data)
+        }
     },
     DELETE_EMPLOYEE(state, id) {
         let data = [];
         state.employees.data.forEach((item, i, arr) => {
             if (item._id === id.id) {
                 delete state.employees.data[i];
-            }else {
+            } else {
                 data.push(item)
             }
         });
@@ -59,6 +61,22 @@ const actions = {
             })
             .catch(error => {
                 console.log("ERR => GET_EMPLOYEES " + error)
+            });
+    },
+
+    loadEmployee: ({commit}, id) => {
+        fetch(API.GET_EMPLOYEE + id, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+        })
+            .then(response => response.json())
+            .then(data => {
+                commit('SET_EMPLOYEE', {data})
+            })
+            .catch(error => {
+                console.log("ERR => GET_EMPLOYEE " + error)
             });
     },
 
@@ -123,7 +141,7 @@ const actions = {
         })
             .then(response => response.json())
             .then(data => {
-                if(data) {
+                if (data) {
                     commit('DELETE_EMPLOYEE', {id})
                 }
             })
@@ -131,7 +149,7 @@ const actions = {
                 console.log("ERR => DELETE_EMPLOYEE " + error)
             });
     },
-    
+
     putSettings: ({commit}, item) => {
         $.ajax({
             type: "PUT",
@@ -150,8 +168,7 @@ const actions = {
     },
 }
 
-const getters = {
-}
+const getters = {}
 
 export default new Vuex.Store({
     state,
